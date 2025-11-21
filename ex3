@@ -14,21 +14,21 @@ class ImageGallery extends StatefulWidget {
   const ImageGallery({super.key});
 
   @override
-  State<ImageGallery> createState() => _ImageGalleryState();
+  State<ImageGallery> createState() => ImageGalleryState();
 }
 
-class _ImageGalleryState extends State<ImageGallery> {
-  int _currentIndex = 0;
+class ImageGalleryState extends State<ImageGallery> {
+  int currentIndex = 0;
 
   void _nextImage() {
     setState(() {
-      _currentIndex = (_currentIndex + 1) % images.length;
+      currentIndex = (currentIndex + 1) % images.length;
     });
   }
 
   void _previousImage() {
     setState(() {
-      _currentIndex = (_currentIndex - 1 + images.length) % images.length;
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
     });
   }
 
@@ -40,19 +40,19 @@ class _ImageGalleryState extends State<ImageGallery> {
         backgroundColor: Colors.green[50],
         appBar: AppBar(
           backgroundColor: Colors.green[400],
-          title: const Text('Image viewer'),
+          title: Text('Image viewer'),
 
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.navigate_before),
+              icon: Icon(Icons.navigate_before),
               tooltip: 'Go to the previous image',
               onPressed: _previousImage,
             ),
 
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
+              padding: EdgeInsets.fromLTRB(0, 0, 50, 0),
               child: IconButton(
-                icon: const Icon(Icons.navigate_next),
+                icon: Icon(Icons.navigate_next),
                 tooltip: 'Go to the next image',
                 onPressed: _nextImage,
               ),
@@ -60,7 +60,7 @@ class _ImageGalleryState extends State<ImageGallery> {
           ],
         ),
 
-        body: Image.asset(images[_currentIndex]),
+        body: Image.asset(images[currentIndex]),
       ),
     );
   }
